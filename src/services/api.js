@@ -1,12 +1,15 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'https://lead-management-system-81b6.onrender.com/api';
+const isDevelopment = import.meta.env.MODE === 'development';
+const API_BASE_URL = isDevelopment 
+  ? 'http://localhost:4000/api' 
+  : 'https://lead-management-system-81b6.onrender.com/api';
 
 
 const api = axios.create({
   baseURL: API_BASE_URL,
   withCredentials: true, 
-  headers: { 'Content-Type': 'application/json' }
+
 });
 
 
