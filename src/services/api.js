@@ -1,26 +1,27 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'https://leadmanagementbackend-v1un.onrender.com';
+const API_BASE_URL = 'https://lead-management-system-81b6.onrender.com/api';
 
 
 const api = axios.create({
   baseURL: API_BASE_URL,
   withCredentials: true, 
+  headers: { 'Content-Type': 'application/json' }
 });
 
 
 export const authAPI = {
   login: (email, password) => 
-    api.post('/api/login', { email, password }),
+    api.post('/auth/login', { email, password }),
   
   register: (email, password) => 
-    api.post('/api/register', { email, password }),
+    api.post('/auth/register', { email, password }),
   
   logout: () => 
-    api.post('/api/logout'),
+    api.post('/auth/logout'),
   
   getCurrentUser: () => 
-    api.get('/api/me')
+    api.get('/auth/me')
 };
 
 
@@ -39,20 +40,20 @@ export const leadsAPI = {
       }
     });
     
-    return api.get(`/api/leads?${queryParams.toString()}`);
+    return api.get(`/leads?${queryParams.toString()}`);
   },
   
   getLead: (id) => 
-    api.get(`/api/leads/${id}`),
+    api.get(`/leads/${id}`),
   
   createLead: (leadData) => 
-    api.post('/api/leads', leadData),
+    api.post('/leads', leadData),
   
   updateLead: (id, leadData) => 
-    api.put(`/api/leads/${id}`, leadData),
+    api.put(`/leads/${id}`, leadData),
   
   deleteLead: (id) => 
-    api.delete(`/api/leads/${id}`)
+    api.delete(`/leads/${id}`)
 };
 
 
