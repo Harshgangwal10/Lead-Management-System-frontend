@@ -67,10 +67,14 @@ export const AuthProvider = ({ children }) => {
   const logout = async () => {
     try {
       await authAPI.logout();
-    } catch (error) {
-    } finally {
       setUser(null);
       setIsAuthenticated(false);
+      return { success: true };
+    } catch (error) {
+      return {
+        success: false,
+        message: "Logout failed",
+      };
     }
   };
 

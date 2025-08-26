@@ -51,7 +51,7 @@ const AppContent = () => {
           }
         />
 
-        <Route path="/" element={<Navigate to="/leads" />} />
+        <Route path="/" element={<Navigate to="/login" />} />
         
       </Routes>
     </>
